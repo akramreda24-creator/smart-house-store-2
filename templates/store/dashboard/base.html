@@ -1,0 +1,15 @@
+{% load static %}
+<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{% block title %}لوحة تحكم Smart House{% endblock %}</title><link rel="stylesheet" href="{% static 'store/css/dashboard.css' %}"></head>
+<body><div class="admin-shell">
+<aside class="sidebar"><a class="brand" href="{% url 'dashboard' %}"><img src="{% static 'store/images/logo.jpg' %}" alt=""><span>SMART HOUSE<small>لوحة إدارة المتجر</small></span></a>
+<div class="side-caption">القائمة الرئيسية</div>
+<a class="side-link {% if active == 'home' %}active{% endif %}" href="{% url 'dashboard' %}">▦ <span>الرئيسية</span></a>
+<a class="side-link {% if active == 'products' %}active{% endif %}" href="{% url 'dashboard_products' %}">＋ <span>المنتجات</span></a>
+<a class="side-link sub-link" href="{% url 'dashboard_product_add' %}">↳ إضافة منتج</a>
+<a class="side-link {% if active == 'orders' %}active{% endif %}" href="{% url 'dashboard_orders' %}">▣ <span>الطلبات</span></a>
+<a class="side-link {% if active == 'customers' %}active{% endif %}" href="{% url 'dashboard_customers' %}">♙ <span>العملاء</span></a>
+<div class="side-spacer"></div><a class="side-link" href="{% url 'home' %}">↗ <span>عرض المتجر</span></a><a class="side-link" href="{% url 'admin:logout' %}">⇥ <span>تسجيل الخروج</span></a>
+<div class="sidebar-foot">للتواصل<br><strong>01556681115</strong><br><strong>01023222021</strong></div></aside>
+<main class="main"><header class="topbar"><div><span class="muted">Smart House Store</span><h1>{% block heading %}لوحة التحكم{% endblock %}</h1></div><div class="user-chip">مرحباً، {{ request.user.username }}</div></header>
+{% if messages %}<div class="alerts">{% for message in messages %}<div class="alert">{{ message }}</div>{% endfor %}</div>{% endif %}
+{% block content %}{% endblock %}</main></div></body></html>

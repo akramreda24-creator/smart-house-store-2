@@ -1,0 +1,11 @@
+{% extends 'store/base.html' %}{% load static %}
+{% block title %}الرئيسية | Smart House Store{% endblock %}
+{% block content %}
+<section class="hero">
+  <div class="hero-copy"><span class="eyebrow">SMART HOUSE STORE</span><h1>بيتك أذكى…<br><em>وحمايتك أولويتنا</em></h1><p>اكتشف منتجات المنزل الذكي والحلول التي تجمع بين الراحة والأمان.</p><a class="btn" href="#products">تسوق الآن</a></div>
+  <div class="hero-logo"><img src="{% static 'store/images/logo.jpg' %}" alt="شعار Smart House Store"></div>
+</section>
+<section class="section"><div class="section-heading"><div><span class="eyebrow">اختياراتنا</span><h2>منتجات مميزة</h2></div><a href="#products">تصفح المنتجات ←</a></div>
+<div class="product-grid">{% for product in featured %}<article class="product-card"><a href="{% url 'product_detail' product.pk %}">{% if product.image %}<img src="{{ product.image.url }}" alt="{{ product.name }}">{% else %}<div class="placeholder">SMART HOUSE</div>{% endif %}<h3>{{ product.name }}</h3></a><strong>{{ product.current_price }} جنيه</strong><form method="post" action="{% url 'add_to_cart' product.pk %}">{% csrf_token %}<button class="btn btn-small">أضف للسلة</button></form></article>{% empty %}<p class="empty">أضف منتجاتك من لوحة الإدارة لتظهر هنا.</p>{% endfor %}</div></section>
+<section class="section" id="products"><div class="section-heading"><div><span class="eyebrow">تسوق بسهولة</span><h2>كل المنتجات</h2></div></div><div class="product-grid">{% for product in products %}<article class="product-card"><a href="{% url 'product_detail' product.pk %}">{% if product.image %}<img src="{{ product.image.url }}" alt="{{ product.name }}">{% else %}<div class="placeholder">SMART HOUSE</div>{% endif %}<h3>{{ product.name }}</h3></a><strong>{{ product.current_price }} جنيه</strong><form method="post" action="{% url 'add_to_cart' product.pk %}">{% csrf_token %}<button class="btn btn-small">أضف للسلة</button></form></article>{% empty %}<p class="empty">لا توجد منتجات منشورة حالياً. يمكنك إضافتها من لوحة الإدارة.</p>{% endfor %}</div></section>
+{% endblock %}

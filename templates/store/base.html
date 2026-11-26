@@ -1,0 +1,16 @@
+{% load static %}
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Smart House Store{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'store/css/style.css' %}">
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="{% url 'home' %}"><img src="{% static 'store/images/logo.jpg' %}" alt="Smart House"><span>SMART HOUSE <small>معانا أنت بأمان</small></span></a>
+  <nav><a href="{% url 'home' %}">الرئيسية</a><a href="{% url 'home' %}#products">المنتجات</a><a href="{% url 'contact' %}">تواصل معنا</a><a class="cart-link" href="{% url 'cart' %}">السلة ({{ cart_count }})</a></nav>
+</header>
+<main>{% if messages %}<div class="messages">{% for message in messages %}<p>{{ message }}</p>{% endfor %}</div>{% endif %}{% block content %}{% endblock %}</main>
+<footer><div><strong>SMART HOUSE STORE</strong><p>معانا أنت بأمان</p><p>للتواصل: <a href="tel:01556681115">01556681115</a> · <a href="tel:01023222021">01023222021</a></p></div><a href="https://www.facebook.com/smarthousedor/" target="_blank" rel="noopener">صفحتنا على Facebook</a><p class="copyright">© Smart House Store</p></footer>
+</body></html>

@@ -1,0 +1,1 @@
+{% extends 'store/base.html' %}{% block title %}تم استلام الطلب{% endblock %}{% block content %}<section class="success"><h1>شكراً لطلبك!</h1><p>تم تسجيل طلبك برقم #{{ order.pk }}.</p><p>سيتواصل معك فريق Smart House Store لتأكيد التفاصيل.</p><a class="btn" href="{% url 'home' %}">العودة للرئيسية</a></section>{% endblock %}
